@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	char chArray[4]{'0','1','2','3'};
-	MemoryLoan mp(chArray, sizeof(chArray));
+	MemoryLoan<char> mp(chArray, sizeof(chArray));
 	char *pch = mp.Lend();
 	cout << *pch;
 	mp.Return(pch);
