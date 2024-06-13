@@ -34,9 +34,8 @@
 // ******条件設定終わり*************
 
 #ifdef USING_DEBUG_STRING
-#define NOMINMAX
-#include <Windows.h>
-#include < algorithm >
+#include <debugapi.h>
+#include <algorithm>
 #include <string>
 #endif // USING_DEBUG_STRING
 
