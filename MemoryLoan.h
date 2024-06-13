@@ -79,7 +79,7 @@ public:
 			throw std::invalid_argument(estr);
 		}
 #ifdef USING_CRITICAL_SECTION
-		(void)InitializeCriticalSection(&cs);
+		(void)::InitializeCriticalSection(&cs);
 #endif // USING_CRITICAL_SECTION
 		ppBuf = new T * [sizeIn];
 		for (size_t i(0); i < size; ++i)
@@ -96,7 +96,7 @@ public:
 	~MemoryLoan()
 	{
 #ifdef USING_CRITICAL_SECTION
-		DeleteCriticalSection(&cs);
+		::DeleteCriticalSection(&cs);
 #endif // USING_CRITICAL_SECTION
 
 #ifdef USING_DEBUG_STRING
@@ -112,7 +112,7 @@ public:
 			<< " NumberOfUnits:" << std::to_string(size)
 			<< " MaximumPeakLoans:" << std::to_string(max_using)
 			<< "\r\n";
-		OutputDebugStringA(ss.str().c_str());
+		::OutputDebugStringA(ss.str().c_str());
 #endif // USING_DEBUG_STRING
 		delete[]ppBuf;
 	}
@@ -150,9 +150,9 @@ public:
 	inline T* Lend()
 	{
 #ifdef USING_CRITICAL_SECTION
-		std::unique_ptr< CRITICAL_SECTION, void(*)(CRITICAL_SECTION*)> qcs
-			= { [&]() {EnterCriticalSection(&cs); return &cs; }()
-			,[](CRITICAL_SECTION* pcs) {LeaveCriticalSection(pcs); } };
+		std::unique_ptr< ::CRITICAL_SECTION, void(*)(::CRITICAL_SECTION*)> qcs
+			= { [&]() {::EnterCriticalSection(&cs); return &cs; }()
+			,[](::CRITICAL_SECTION* pcs) {::LeaveCriticalSection(pcs); } };
 #endif // USING_CRITICAL_SECTION
 #ifdef CONFIRM_RANGE
 		if (front + size < end)
@@ -192,9 +192,9 @@ public:
 	inline void Return(T* pT)
 	{
 #ifdef USING_CRITICAL_SECTION
-		std::unique_ptr< CRITICAL_SECTION, void(*)(CRITICAL_SECTION*)> qcs
-			= { [&]() {EnterCriticalSection(&cs); return &cs; }()
-			,[](CRITICAL_SECTION* pcs) {LeaveCriticalSection(pcs); }};
+		std::unique_ptr< ::CRITICAL_SECTION, void(*)(::CRITICAL_SECTION*)> qcs
+			= { [&]() {::EnterCriticalSection(&cs); return &cs; }()
+			,[](::CRITICAL_SECTION* pcs) {::LeaveCriticalSection(pcs); }};
 #endif // USING_CRITICAL_SECTION
 #ifdef CONFIRM_RANGE
 		if (front == end + size)
@@ -243,7 +243,7 @@ protected:
 	size_t end;
 	const size_t mask;
 #ifdef USING_CRITICAL_SECTION
-	CRITICAL_SECTION cs;
+	::CRITICAL_SECTION cs;
 #endif // USING_CRITICAL_SECTION
 
 #ifdef CONFIRM_RANGE
