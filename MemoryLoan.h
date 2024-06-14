@@ -20,7 +20,7 @@
 #define MR_USING_CRITICAL_SECTION
 
 /// @def MR_CONFIRM_RANGE
-/// @brief 範囲外確認が必要の場合。
+/// @brief 範囲外確認を行う場合。
 #define MR_CONFIRM_RANGE
 
 /// @def MR_USING_DEBUG_OUT
