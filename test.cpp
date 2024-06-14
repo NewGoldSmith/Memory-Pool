@@ -1,8 +1,6 @@
 ﻿// test.cpp
 #include <iostream>
-#include <vector>
 #include "MemoryLoan.h"
-#include "./stack_resource.h"
 
 using namespace std;
 
