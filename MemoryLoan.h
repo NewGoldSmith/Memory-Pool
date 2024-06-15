@@ -54,7 +54,7 @@ template <typename T>
 class MemoryLoan {
 public:
 	MemoryLoan() = delete;
-	// @attention sizeInは2のべき乗で無くてはなりません。
+	// @attention sizeInは2のべき乗でなくてはなりません。
 	MemoryLoan(T *const pBufIn, size_t sizeIn)
 		:ppBuf(nullptr)
 		, front(0)
@@ -114,8 +114,7 @@ public:
 		delete[] ppBuf;
 	}
 
-
-	//sizeInは2のべき乗で無くてはなりません。
+	// @attention sizeInは2のべき乗でなくてはなりません。
 	void ReInitialized(T *pBufIn, size_t sizeIn) {
 #ifdef ML_USING_DEBUG_OUT
 		std::stringstream ss;
