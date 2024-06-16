@@ -217,7 +217,7 @@ public:
 		++front;
 	}
 
-	void DebugString(const std::string str) {
+	void DebugString(const std::string &str) {
 #if defined(ML_CONFIRM_RANGE) ||defined(ML_USING_DEBUG_OUT) || defined(ML_USING_STD_ERROR)
 		strDebug = str;
 #endif
