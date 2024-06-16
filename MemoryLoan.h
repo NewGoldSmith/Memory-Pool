@@ -156,7 +156,7 @@ public:
 			= { [&]() {::EnterCriticalSection(&cs); return &cs; }(),::LeaveCriticalSection };
 #endif // ML_USING_CRITICAL_SECTION
 #ifdef ML_CONFIRM_RANGE
-		if ((front + mask + 1) < (end + 1)) {
+		if ((front + mask) < end) {
 			std::stringstream ss;
 			ss << __FILE__ << "(" << __LINE__ << "):"
 				<< "Loans will soon surpass units."
