@@ -115,7 +115,7 @@ public:
 	}
 
 	// @attention sizeInは2のべき乗でなくてはなりません。
-	void ReInitialized(T *pBufIn, size_t sizeIn) {
+	void ReInitialized(T *const pBufIn, size_t sizeIn) {
 #ifdef ML_USING_DEBUG_OUT
 		std::stringstream ss;
 		ss << "MemoryLoan reinitialized."
