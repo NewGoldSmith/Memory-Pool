@@ -34,7 +34,6 @@
 // **********条件設定終わり************************
 
 #include <memory>
-#include <memory_resource>
 #include <string>
 #include <exception>
 #include <iostream>
